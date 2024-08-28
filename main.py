@@ -15,7 +15,7 @@ def main() -> None:
     """Start the game."""
     print("Starting asteroids!")
 
-    pygame.init() 
+    pygame.init()
     clock = pygame.time.Clock()
     dt = 0
 
