@@ -8,10 +8,11 @@ from circleshape import CircleShape
 
 
 class Asteroid(CircleShape):
-    def __init__(self, x, y, radius) -> None:
+    def __init__(self, x: float, y: float, radius: float) -> None:
         super().__init__(x, y, radius)
 
-    def draw(self, screen) -> None:
+    def draw(self, screen: pygame.Surface) -> None:
+        """Redraw the instance on the `screen`."""
         pygame.draw.circle(
             surface=screen,
             color="white",
@@ -20,10 +21,12 @@ class Asteroid(CircleShape):
             width=ASTEROID_LINE_WIDTH,
         )
 
-    def update(self, dt) -> None:
+    def update(self, dt: float) -> None:
+        """Update the state of the instance."""
         self.position += self.velocity * dt
 
     def split(self) -> None:
+        """Kill the current Asteroid and spawn new ones if applicable."""
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
