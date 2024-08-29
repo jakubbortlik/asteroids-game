@@ -1,9 +1,12 @@
 # asteroids-game
-This is a fun project based on a boot.dev task
+This is a fun project based on a boot.dev task.
 
 # Ideas for further improvement
 
-- [ ] Add a scoring system
+- [x] Add a scoring system
+- [x] Add a final screen
+- [ ] Enable pausing the game
+- [ ] Add a help menu with the keybindings
 - [ ] Implement multiple lives and re-spawning
 - [ ] Add an explosion effect for the asteroids
 - [ ] Add acceleration to the player movement

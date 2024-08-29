@@ -1,19 +1,21 @@
-import sys
+import pygame
 
 from constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
 )
-import pygame
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from game_over_screen import draw_game_over
 from player import Player
+from score_tracker import ScoreTracker
 from shot import Shot
 
 
 def main() -> None:
     """Start the game."""
     print("Starting asteroids!")
+    pygame.display.set_caption("Kill all the asteroids before they kill you!")
 
     pygame.init()
     clock = pygame.time.Clock()
@@ -28,16 +30,21 @@ def main() -> None:
     Asteroid.containers = (asteroids, updatables, drawables)  # type: ignore
     AsteroidField.containers = (updatables,)  # type: ignore
     Player.containers = (updatables, drawables)  # type: ignore
+    ScoreTracker.containers = (updatables, drawables) # type: ignore
 
     _ = AsteroidField()
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     screen: pygame.Surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    score_tracker = ScoreTracker()
 
-    while True:
+    playing = True
+    while playing:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                playing = False
         screen.fill(color="black")
+
+        # Update objects
         for updatable in updatables:
             updatable.update(dt)
 
@@ -45,6 +52,7 @@ def main() -> None:
         for asteroid in asteroids:
             for shot in shots:
                 if asteroid.collides_with(shot):
+                    score_tracker.add_points(asteroid)
                     shot.kill()
                     asteroid.split()
 
@@ -52,13 +60,22 @@ def main() -> None:
         for asteroid in asteroids:
             if asteroid.collides_with(player):
                 print("Game over!")
-                sys.exit()
+                playing = False
 
+        # Redraw objects
         for drawable in drawables:
             drawable.draw(screen)
+
         pygame.display.flip()
         dt = clock.tick(60) / 1000
-
+    
+    draw_game_over(screen, score_tracker.score)
+    waiting = True
+    while waiting:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                waiting = False
+        pygame.display.flip()
 
 if __name__ == "__main__":
     main()

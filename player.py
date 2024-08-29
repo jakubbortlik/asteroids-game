@@ -2,6 +2,7 @@ import pygame
 
 from circleshape import CircleShape
 from constants import (
+    BLUE,
     PLAYER_LINE_WIDTH,
     PLAYER_RADIUS,
     PLAYER_SHOOT_SPEED,
@@ -32,7 +33,7 @@ class Player(CircleShape):
         """Redraw the player on the `screen`."""
         pygame.draw.polygon(
             surface=screen,
-            color="white",
+            color=BLUE,
             points=self.triangle(),
             width=PLAYER_LINE_WIDTH,
         )
