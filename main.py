@@ -1,6 +1,7 @@
 import pygame
 
 from constants import (
+    BLACK,
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
 )
@@ -42,7 +43,7 @@ def main() -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 playing = False
-        screen.fill(color="black")
+        screen.fill(color=BLACK)
 
         # Update objects
         for updatable in updatables:

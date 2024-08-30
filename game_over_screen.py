@@ -1,6 +1,7 @@
 import pygame
 
 from constants import (
+    BLACK,
     GAME_OVER_BOX_BORDER_WIDTH,
     GAME_OVER_BOX_PADDING,
     GAME_OVER_FONT,
