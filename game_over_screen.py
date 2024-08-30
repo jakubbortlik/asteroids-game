@@ -31,21 +31,29 @@ def draw_game_over(screen: pygame.Surface, score: int):
     text_widths = get_text_widths(screen_text)
     max_text_width = max(text_widths) + GAME_OVER_BOX_PADDING * 2
 
+    game_over_box_rect = (
+        (SCREEN_WIDTH - max_text_width) // 2,
+        (SCREEN_HEIGHT - total_text_height + GAME_OVER_BOX_PADDING * 2) // 2,
+        max_text_width,
+        total_text_height + line_height,
+    )
+
+    # Cover objects on screen with BG color
+    pygame.draw.rect(
+        surface=screen,
+        color=BLACK,
+        rect=game_over_box_rect,
+        width=0,
+    )
+
     pygame.draw.rect(
         surface=screen,
         color=GRAY,
-        rect=(
-            (SCREEN_WIDTH - max_text_width) // 2,
-            (SCREEN_HEIGHT - total_text_height + GAME_OVER_BOX_PADDING * 2) // 2,
-            max_text_width,
-            total_text_height + line_height,
-        ),
+        rect=game_over_box_rect,
         width=GAME_OVER_BOX_BORDER_WIDTH,
     )
 
-    for i, (text, text_width) in enumerate(
-        zip(screen_text, text_widths), start=1
-    ):
+    for i, (text, text_width) in enumerate(zip(screen_text, text_widths), start=1):
         x = (SCREEN_WIDTH - text_width) // 2
         GAME_OVER_FONT.render_to(
             surf=screen,
