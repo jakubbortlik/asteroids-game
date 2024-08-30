@@ -1,6 +1,6 @@
 import pygame
 
-from circleshape import CircleShape
+from shapes import CircleShape
 from constants import (
     BLUE,
     PLAYER_LINE_WIDTH,
