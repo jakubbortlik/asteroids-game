@@ -4,7 +4,7 @@ from typing import Callable
 
 import pygame
 import random
-from asteroid import Asteroid
+from game_objects import Asteroid
 from constants import (
     ASTEROID_KINDS,
     ASTEROID_MAX_RADIUS,

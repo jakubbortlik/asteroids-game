@@ -1,40 +1,31 @@
 import pygame
 
-from shapes import CircleShape
 from constants import (
     AZURE,
     PLAYER_LINE_WIDTH,
-    PLAYER_RADIUS,
+    PLAYER_SIZE,
     PLAYER_SHOOT_SPEED,
     PLAYER_SHOOT_COOLDOWN,
     PLAYER_SPEED,
     PLAYER_TURN_SPEED,
 )
-from shot import Shot
+from game_objects import Shot
+from shapes import TriangleShape
 
 
-class Player(CircleShape):
+class Player(TriangleShape):
     def __init__(self, x: float, y: float) -> None:
-        super().__init__(x, y, PLAYER_RADIUS)
+        super().__init__(x, y, PLAYER_SIZE)
         self.position = pygame.Vector2(x, y)
         self.rotation = 0
         self.shoot_timer = 0.0
-
-    def triangle(self) -> list[pygame.Vector2]:
-        """Calculate the triangle vectors."""
-        forward = pygame.Vector2(0, 1).rotate(self.rotation)
-        right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * self.radius / 1.5
-        a = self.position + forward * self.radius
-        b = self.position - forward * self.radius - right
-        c = self.position - forward * self.radius + right
-        return [a, b, c]
 
     def draw(self, screen: pygame.Surface) -> None:
         """Redraw the player on the `screen`."""
         pygame.draw.polygon(
             surface=screen,
             color=AZURE,
-            points=self.triangle(),
+            points=self.triangle,
             width=PLAYER_LINE_WIDTH,
         )
 

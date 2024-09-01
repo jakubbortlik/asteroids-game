@@ -5,12 +5,9 @@ from constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
 )
-from asteroid import Asteroid
-from asteroidfield import AsteroidField
 from game_over_screen import draw_game_over
-from player import Player
+from game_objects import Asteroid, AsteroidField, Player, Shot
 from score_tracker import ScoreTracker
-from shot import Shot
 
 
 def main() -> None:
