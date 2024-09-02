@@ -1,9 +1,11 @@
 from asteroids.shapes.shape import Shape
-from asteroids.shapes.triangle_shape import TriangleShape
-from asteroids.shapes.circle_shape import CircleShape
+from asteroids.shapes.polygon import Polygon
+from asteroids.shapes.triangle_shape import Triangle
+from asteroids.shapes.circle_shape import Circle
 
 __all__ = [
-    "CircleShape",
+    "Circle",
+    "Polygon",
     "Shape",
-    "TriangleShape",
+    "Triangle",
 ]

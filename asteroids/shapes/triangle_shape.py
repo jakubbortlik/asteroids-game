@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import pygame
 
-from asteroids.shapes import Shape
+from asteroids.shapes import Polygon
 
 
-class TriangleShape(Shape):
+class Triangle(Polygon):
     """Base class for triangular shapes."""
 
     def __init__(self, x: float, y: float, size: float, speed: int = 0) -> None:
@@ -16,7 +16,7 @@ class TriangleShape(Shape):
         self._size = size
         self.rotation = 0
 
-    def _calculate_vertices(self):
+    def _get_vertices(self):
         """Calculate the triangle vertices."""
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * self._size / 1.5
@@ -24,8 +24,3 @@ class TriangleShape(Shape):
         b = self.position - forward * self._size - right
         c = self.position - forward * self._size + right
         return [a, b, c]
-        
-
-    @property
-    def triangle(self):
-        return self._calculate_vertices()

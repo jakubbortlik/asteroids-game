@@ -6,10 +6,10 @@ from typing import assert_never
 
 import pygame
 
-from asteroids.shapes import Shape, TriangleShape
+from asteroids.shapes import Shape, Polygon
 
 
-class CircleShape(Shape):
+class Circle(Shape):
     """Base class for game objects."""
 
     def __init__(self, x: float, y: float, radius: float, speed: int = 0) -> None:
@@ -20,13 +20,13 @@ class CircleShape(Shape):
         self.speed = speed
         self.radius = radius
 
-    def collides_with(self, other: CircleShape | TriangleShape) -> bool:
+    def collides_with(self, other: Circle | Polygon) -> bool:
         """Return true if the instance collides with `other` instance of CircleShape."""
         match other:
-            case CircleShape():
+            case Circle():
                 return self.position.distance_to(other.position) <= (self.radius + other.radius)
-            case TriangleShape():
-                lines = pairwise(list(other.triangle) + [other.triangle[0]])
+            case Polygon():
+                lines = pairwise(list(other.vertices) + [other.vertices[0]])
                 return any(self._intersects_line(*points) for points in lines)
             case _:
                 assert_never(other)

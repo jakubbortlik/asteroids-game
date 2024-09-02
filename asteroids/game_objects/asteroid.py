@@ -3,10 +3,10 @@ import random
 import pygame
 
 from asteroids.constants import ASTEROID_LINE_WIDTH, ASTEROID_MIN_RADIUS, WHITE
-from asteroids.shapes import CircleShape
+from asteroids.shapes import Circle
 
 
-class Asteroid(CircleShape):
+class Asteroid(Circle):
     def __init__(self, x: float, y: float, radius: float, speed: int = 0) -> None:
         super().__init__(x, y, radius, speed)
 

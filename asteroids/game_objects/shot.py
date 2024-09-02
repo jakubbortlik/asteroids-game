@@ -1,10 +1,10 @@
 import pygame
 
 from asteroids.constants import SHOT_LINE_WIDTH, SHOT_RADIUS
-from asteroids.shapes import CircleShape
+from asteroids.shapes import Circle
 
 
-class Shot(CircleShape):
+class Shot(Circle):
     def __init__(self, x: float, y: float) -> None:
         super().__init__(x, y, SHOT_RADIUS)
 

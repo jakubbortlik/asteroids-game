@@ -10,10 +10,10 @@ from asteroids.constants import (
     PLAYER_TURN_SPEED,
 )
 from asteroids.game_objects import Shot
-from asteroids.shapes import TriangleShape
+from asteroids.shapes import Polygon
 
 
-class Player(TriangleShape):
+class Player(Polygon):
     def __init__(self, x: float, y: float) -> None:
         super().__init__(x, y, PLAYER_SIZE)
         self.position = pygame.Vector2(x, y)
@@ -25,7 +25,7 @@ class Player(TriangleShape):
         pygame.draw.polygon(
             surface=screen,
             color=AZURE,
-            points=self.triangle,
+            points=self.vertices,
             width=PLAYER_LINE_WIDTH,
         )
 
@@ -61,3 +61,13 @@ class Player(TriangleShape):
         self.shoot_timer = PLAYER_SHOOT_COOLDOWN
         shot = Shot(*self.position)
         shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+
+    def _get_vertices(self):
+        """Calculate the player vertices."""
+        forward = pygame.Vector2(0, 1).rotate(self.rotation)
+        right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * self._size / 1.5
+        a = self.position + forward * self._size
+        b = self.position - forward * self._size - right
+        c = self.position - (forward * self._size * 0.25)
+        d = self.position - forward * self._size + right
+        return [a, b, c, d]
