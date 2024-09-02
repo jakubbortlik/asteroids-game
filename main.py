@@ -1,12 +1,9 @@
 import pygame
 
-from constants import (
-    BLACK,
-    SCREEN_WIDTH,
-    SCREEN_HEIGHT,
-)
+from constants import BLACK, SCREEN_WIDTH, SCREEN_HEIGHT
 from game_over_screen import draw_game_over
 from game_objects import Asteroid, AsteroidField, Player, Shot
+from pause_screen import draw_pause_screen
 from score_tracker import ScoreTracker
 
 
@@ -28,18 +25,28 @@ def main() -> None:
     Asteroid.containers = (asteroids, updatables, drawables)  # type: ignore
     AsteroidField.containers = (updatables,)  # type: ignore
     Player.containers = (updatables, drawables)  # type: ignore
-    ScoreTracker.containers = (updatables, drawables) # type: ignore
+    ScoreTracker.containers = (updatables, drawables)  # type: ignore
 
     _ = AsteroidField()
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     screen: pygame.Surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     score_tracker = ScoreTracker()
 
+    paused = was_paused = False
     playing = True
     while playing:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 playing = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    paused = not paused
+
+        if paused:
+            was_paused = True
+            draw_pause_screen(screen)
+            continue
+
         screen.fill(color=BLACK)
 
         # Update objects
@@ -65,8 +72,13 @@ def main() -> None:
             drawable.draw(screen)
 
         pygame.display.flip()
-        dt = clock.tick(60) / 1000
-    
+
+        tick = clock.tick(60)
+        if was_paused:
+            tick, was_paused = 0, False
+
+        dt = tick / 1000
+
     draw_game_over(screen, score_tracker.score)
     waiting = True
     while waiting:
@@ -74,6 +86,7 @@ def main() -> None:
             if event.type == pygame.QUIT:
                 waiting = False
         pygame.display.flip()
+
 
 if __name__ == "__main__":
     main()
