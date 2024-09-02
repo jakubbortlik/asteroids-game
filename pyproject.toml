@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "asteroids"
+version = "0.1.0"
+description = "Kill asteroids before they kill you!"
+authors = ["Jakub F. Bortlík <jakub.bortlik@proton.me>"]
+readme = "README.md"
+packages = [{include = "asteroids"}]
+
+[tool.poetry.scripts]
+asteroids = "main:cli"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pygame = "^2.6.0"
+typer = "^0.12.5"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.3"
+black = "^24.8.0"
+mypy = "^1.11.2"
+pytest = "^8.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,6 +1,6 @@
 import pygame
 
-from constants import (
+from asteroids.constants import (
     ASTEROID_MIN_SPEED,
     FONT,
     GRAY,

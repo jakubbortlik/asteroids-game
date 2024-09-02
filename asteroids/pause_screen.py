@@ -1,6 +1,6 @@
 import pygame
 
-from constants import GAME_OVER_FONT, SCREEN_HEIGHT, SCREEN_WIDTH, WHITE
+from asteroids.constants import GAME_OVER_FONT, SCREEN_HEIGHT, SCREEN_WIDTH, WHITE
 
 
 text = "PAUSE (press P to continue)"

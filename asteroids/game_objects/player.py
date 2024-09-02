@@ -1,6 +1,6 @@
 import pygame
 
-from constants import (
+from asteroids.constants import (
     AZURE,
     PLAYER_LINE_WIDTH,
     PLAYER_SIZE,
@@ -9,8 +9,8 @@ from constants import (
     PLAYER_SPEED,
     PLAYER_TURN_SPEED,
 )
-from game_objects import Shot
-from shapes import TriangleShape
+from asteroids.game_objects import Shot
+from asteroids.shapes import TriangleShape
 
 
 class Player(TriangleShape):

@@ -6,7 +6,7 @@ from typing import assert_never
 
 import pygame
 
-from shapes import Shape, TriangleShape
+from asteroids.shapes import Shape, TriangleShape
 
 
 class CircleShape(Shape):

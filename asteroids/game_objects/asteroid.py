@@ -2,9 +2,8 @@ import random
 
 import pygame
 
-from constants import ASTEROID_LINE_WIDTH, ASTEROID_MIN_RADIUS, WHITE
-
-from shapes import CircleShape
+from asteroids.constants import ASTEROID_LINE_WIDTH, ASTEROID_MIN_RADIUS, WHITE
+from asteroids.shapes import CircleShape
 
 
 class Asteroid(CircleShape):

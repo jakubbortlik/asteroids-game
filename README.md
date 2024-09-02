@@ -1,6 +1,16 @@
 # asteroids-game
 This is a fun project based on a boot.dev task.
 
+# Installation
+- if you have `Poetry` installed just run `poetry install` in the project's root directory
+- alternatively you can run `pip install -e .` (in a dedicated virtual environment)
+
+# Running the game
+- activate the poetry shell (`poetry shell`) and just type `asteroids` in the command line
+- or run `poetry run asteroids`
+- alternatively, if the above does not work, run `python main.py` in the dedicated virtual
+  environment
+
 # Ideas for further improvement
 
 - [x] Add a scoring system

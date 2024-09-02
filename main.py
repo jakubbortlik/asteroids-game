@@ -1,13 +1,17 @@
 import pygame
+import typer
 
-from constants import BLACK, SCREEN_WIDTH, SCREEN_HEIGHT
-from game_over_screen import draw_game_over
-from game_objects import Asteroid, AsteroidField, Player, Shot
-from pause_screen import draw_pause_screen
-from score_tracker import ScoreTracker
+from asteroids.constants import BLACK, SCREEN_WIDTH, SCREEN_HEIGHT
+from asteroids.game_objects import Asteroid, AsteroidField, Player, Shot
+from asteroids.game_over_screen import draw_game_over
+from asteroids.pause_screen import draw_pause_screen
+from asteroids.score_tracker import ScoreTracker
+
+cli = typer.Typer()
 
 
-def main() -> None:
+@cli.command()
+def run() -> None:
     """Start the game."""
     print("Starting asteroids!")
     pygame.display.set_caption("Kill all the asteroids before they kill you!")
@@ -89,4 +93,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    cli()

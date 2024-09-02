@@ -1,6 +1,6 @@
 import pygame
 
-from constants import (
+from asteroids.constants import (
     BLACK,
     GAME_OVER_BOX_BORDER_WIDTH,
     GAME_OVER_BOX_PADDING,

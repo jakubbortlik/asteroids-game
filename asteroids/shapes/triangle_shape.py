@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pygame
 
-from shapes import Shape
+from asteroids.shapes import Shape
 
 
 class TriangleShape(Shape):

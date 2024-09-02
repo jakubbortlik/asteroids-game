@@ -1,4 +1,9 @@
+import os
+
 import pygame.freetype
+
+dir_name = os.path.dirname(os.path.realpath(__file__))
+font_path = os.path.join(dir_name, "../data/fonts/JetBrainsMonoNerdFont-Medium.ttf")
 
 pygame.freetype.init()
 
@@ -24,9 +29,7 @@ SHOT_RADIUS = 5.0
 SHOT_LINE_WIDTH = 0
 
 SCORE_BOX_FONT_SIZE = 12
-FONT = pygame.freetype.Font(
-    file="data/fonts/JetBrainsMonoNerdFont-Medium.ttf", size=SCORE_BOX_FONT_SIZE
-)
+FONT = pygame.freetype.Font(file=font_path, size=SCORE_BOX_FONT_SIZE)
 SCORE_BOX_WIDTH = 150
 SCORE_BOX_HEIGHT = 30
 SCORE_BOX_X = SCREEN_WIDTH - SCORE_BOX_WIDTH - 10
@@ -35,9 +38,7 @@ SCORE_BOX_BORDER_WIDTH = 1
 SCORE_BOX_PADDING = 10
 
 GAME_OVER_FONT_SIZE = 36
-GAME_OVER_FONT = pygame.freetype.Font(
-    file="data/fonts/JetBrainsMonoNerdFont-Medium.ttf", size=GAME_OVER_FONT_SIZE
-)
+GAME_OVER_FONT = pygame.freetype.Font(file=font_path, size=GAME_OVER_FONT_SIZE)
 GAME_OVER_BOX_BORDER_WIDTH = 2
 GAME_OVER_BOX_PADDING = 20
 
