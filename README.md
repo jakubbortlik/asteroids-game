@@ -23,7 +23,7 @@ This is a fun project based on a boot.dev task.
 - [ ] Add customization and a config file
 - [ ] Implement multiple lives and re-spawning
 - [ ] Add an explosion effect for the asteroids
-- [ ] Add acceleration to the player movement
+- [x] Add acceleration to the player movement
 - [ ] Make the objects wrap around the screen instead of disappearing
 - [ ] Add a background image or create a starry heaven
 - [ ] Create different weapon types (earned by points)

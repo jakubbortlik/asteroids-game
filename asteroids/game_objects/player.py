@@ -4,10 +4,11 @@ from asteroids.constants import (
     AZURE,
     PLAYER_LINE_WIDTH,
     PLAYER_SIZE,
-    PLAYER_SHOOT_SPEED,
     PLAYER_SHOOT_COOLDOWN,
     PLAYER_SPEED,
+    PLAYER_MAX_SPEEDUP,
     PLAYER_TURN_SPEED,
+    SHOT_SPEED,
 )
 from asteroids.game_objects import Shot
 from asteroids.shapes import Polygon
@@ -19,6 +20,7 @@ class Player(Polygon):
         self.position = pygame.Vector2(x, y)
         self.rotation = 0
         self.shoot_timer = 0.0
+        self.speedup = 0.0
 
     def draw(self, screen: pygame.Surface) -> None:
         """Redraw the player on the `screen`."""
@@ -53,14 +55,15 @@ class Player(Polygon):
 
     def move(self, dt: float) -> None:
         """Change position of player based on user input."""
+        self.speedup += abs(dt) * 1000
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
-        self.position += forward * PLAYER_SPEED * dt
+        self.position += forward * (PLAYER_SPEED + min(PLAYER_MAX_SPEEDUP, self.speedup)) * dt
 
     def shoot(self, dt: float) -> None:
         """Shoot according to user input."""
         self.shoot_timer = PLAYER_SHOOT_COOLDOWN
         shot = Shot(*self.position)
-        shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+        shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * SHOT_SPEED
 
     def _get_vertices(self):
         """Calculate the player vertices."""

@@ -45,6 +45,9 @@ def run() -> None:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_p:
                     paused = not paused
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_w or event.key == pygame.K_s:
+                    player.speedup = 0.0
 
         if paused:
             was_paused = True
