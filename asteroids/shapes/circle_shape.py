@@ -32,13 +32,10 @@ class Circle(Shape):
                 assert_never(other)
 
     def _intersects_line(self, line_start: pygame.Vector2, line_end: pygame.Vector2) -> bool:
-        ac = self.position - line_start
-        ab = line_end - line_start
-        ab2 = ab.dot(ab)
-        acab = ac.dot(ab)
-        t = acab / ab2
-
-        t = max(0, min(ab2, ac.dot(ab))) / ab2
-
-        closest_point = line_start + ab * t
+        circle_center_to_line_start = self.position - line_start
+        line_len = line_end - line_start
+        line_len_squared = line_len.dot(line_len)
+        acab = circle_center_to_line_start.dot(line_len)  # mystery from Claude.ai
+        t = max(0, min(line_len_squared, acab)) / line_len_squared
+        closest_point = line_start + line_len * t
         return self.position.distance_to(closest_point) <= self.radius
