@@ -3,8 +3,9 @@ import typer
 
 from asteroids.constants import BLACK, SCREEN_WIDTH, SCREEN_HEIGHT
 from asteroids.game_objects import Asteroid, AsteroidField, Player, Shot
-from asteroids.game_over_screen import draw_game_over
-from asteroids.pause_screen import draw_pause_screen
+from asteroids.screens.game_over import draw_game_over
+from asteroids.screens.start import draw_start_screen
+from asteroids.screens.pause import draw_pause_screen
 from asteroids.score_tracker import ScoreTracker
 
 cli = typer.Typer()
@@ -35,6 +36,14 @@ def run() -> None:
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     screen: pygame.Surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     score_tracker = ScoreTracker()
+
+    started = False
+    while not started:
+        draw_start_screen(screen)
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    started = True
 
     paused = was_paused = False
     playing = True

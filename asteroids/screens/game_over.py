@@ -1,21 +1,20 @@
 import pygame
 
+from asteroids.constants import FONT_PATH
+from asteroids.screens.common import get_text_widths
+
 from asteroids.constants import (
     BLACK,
-    GAME_OVER_BOX_BORDER_WIDTH,
-    GAME_OVER_BOX_PADDING,
-    GAME_OVER_FONT,
-    GAME_OVER_FONT_SIZE,
     GRAY,
     SCREEN_HEIGHT,
     SCREEN_WIDTH,
     WHITE,
 )
 
-
-def get_text_widths(texts: list[str]) -> list[int]:
-    text_widths = [GAME_OVER_FONT.get_rect(line)[2] for line in texts]
-    return text_widths
+GAME_OVER_FONT_SIZE = 36
+GAME_OVER_FONT = pygame.freetype.Font(file=FONT_PATH, size=GAME_OVER_FONT_SIZE)
+GAME_OVER_BOX_BORDER_WIDTH = 2
+GAME_OVER_BOX_PADDING = 20
 
 
 def draw_game_over(screen: pygame.Surface, score: int):
@@ -29,7 +28,7 @@ def draw_game_over(screen: pygame.Surface, score: int):
     free_screen_height = SCREEN_HEIGHT - total_text_height - 100
     start_y = free_screen_height / 2
 
-    text_widths = get_text_widths(screen_text)
+    text_widths = get_text_widths(screen_text, GAME_OVER_FONT)
     max_text_width = max(text_widths) + GAME_OVER_BOX_PADDING * 2
 
     game_over_box_rect = (

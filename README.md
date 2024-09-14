@@ -16,7 +16,7 @@ This is a fun project based on a boot.dev task.
 - [x] Add a scoring system
 - [x] Add a final screen
 - [ ] Add levels with increasing speed and number of asteroids
-- [ ] Add an initial screen
+- [x] Add an initial screen
 - [x] Enable pausing the game
 - [ ] Enable restarting the game
 - [ ] Add a help menu with the keybindings
