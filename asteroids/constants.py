@@ -10,8 +10,10 @@ pygame.freetype.init()
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 
-ASTEROID_MIN_SPEED = 40
-ASTEROID_MAX_SPEED = 100
+# For debugging, set `scale` to a higher value to make asteroids move slower
+scale = 1.0
+ASTEROID_MIN_SPEED = int(40 / scale)
+ASTEROID_MAX_SPEED = int(100 / scale)
 ASTEROID_MIN_RADIUS = 20.0
 ASTEROID_KINDS = 3
 ASTEROID_LINE_WIDTH = 2
