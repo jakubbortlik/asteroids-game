@@ -24,14 +24,18 @@ class Circle(Shape):
         """Return true if the instance collides with `other` instance of CircleShape."""
         match other:
             case Circle():
-                return self.position.distance_to(other.position) <= (self.radius + other.radius)
+                return self.position.distance_to(other.position) <= (
+                    self.radius + other.radius
+                )
             case Polygon():
                 lines = pairwise(list(other.vertices) + [other.vertices[0]])
                 return any(self._intersects_line(*points) for points in lines)
             case _:
                 assert_never(other)
 
-    def _intersects_line(self, line_start: pygame.Vector2, line_end: pygame.Vector2) -> bool:
+    def _intersects_line(
+        self, line_start: pygame.Vector2, line_end: pygame.Vector2
+    ) -> bool:
         circle_center_to_line_start = self.position - line_start
         line_len = line_end - line_start
         line_len_squared = line_len.dot(line_len)

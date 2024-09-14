@@ -37,6 +37,8 @@ def run() -> None:
     screen: pygame.Surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     score_tracker = ScoreTracker()
 
+    playing = True
+
     started = False
     while not started:
         draw_start_screen(screen)
@@ -44,9 +46,12 @@ def run() -> None:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     started = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    started = True
+                    playing = False
 
     paused = was_paused = False
-    playing = True
     while playing:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -54,6 +59,8 @@ def run() -> None:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_p:
                     paused = not paused
+                if event.key == pygame.K_q:
+                    playing = False
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w or event.key == pygame.K_s:
                     player.speedup = 0.0

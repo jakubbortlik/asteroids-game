@@ -57,7 +57,9 @@ class Player(Polygon):
         """Change position of player based on user input."""
         self.speedup += abs(dt) * 1000
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
-        self.position += forward * (PLAYER_SPEED + min(PLAYER_MAX_SPEEDUP, self.speedup)) * dt
+        self.position += (
+            forward * (PLAYER_SPEED + min(PLAYER_MAX_SPEEDUP, self.speedup)) * dt
+        )
 
     def shoot(self, dt: float) -> None:
         """Shoot according to user input."""

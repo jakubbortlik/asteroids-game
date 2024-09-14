@@ -21,7 +21,7 @@ class Polygon(Shape):
     @abstractmethod
     def _get_vertices(self):
         """Calculate the polygon vertices."""
-        
+
     @property
     def vertices(self):
         return self._get_vertices()
