@@ -18,8 +18,8 @@ This is a fun project based on a boot.dev task.
 - [ ] Add levels with increasing speed and number of asteroids
 - [x] Add an initial screen
 - [x] Enable pausing the game
-- [ ] Enable full screen mode
-- [ ] Enable restarting the game
+- [ ] Fix full screen mode
+- [x] Enable restarting the game
 - [ ] Add a help menu with the keybindings
 - [ ] Add customization and a config file
 - [ ] Implement multiple lives and re-spawning
